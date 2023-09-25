@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E80FE6052AC1CB2000C1BEC7 /* Constraintable+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80FE6042AC1CB2000C1BEC7 /* Constraintable+Size.swift */; };
+		E80FE6072AC1CC4D00C1BEC7 /* Constraintable+Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80FE6062AC1CC4D00C1BEC7 /* Constraintable+Center.swift */; };
+		E80FE60A2AC1D23E00C1BEC7 /* Constraintable+Fill.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80FE6092AC1D23E00C1BEC7 /* Constraintable+Fill.swift */; };
 		E82CE7462AAB3113009714EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CE7452AAB3113009714EC /* AppDelegate.swift */; };
 		E82CE74A2AAB3113009714EC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82CE7492AAB3113009714EC /* ViewController.swift */; };
 		E82CE74F2AAB3113009714EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E82CE74E2AAB3113009714EC /* Assets.xcassets */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E80FE6042AC1CB2000C1BEC7 /* Constraintable+Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constraintable+Size.swift"; sourceTree = "<group>"; };
+		E80FE6062AC1CC4D00C1BEC7 /* Constraintable+Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constraintable+Center.swift"; sourceTree = "<group>"; };
+		E80FE6092AC1D23E00C1BEC7 /* Constraintable+Fill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constraintable+Fill.swift"; sourceTree = "<group>"; };
 		E82CE7422AAB3113009714EC /* Autolayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Autolayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E82CE7452AAB3113009714EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E82CE7492AAB3113009714EC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +80,9 @@
 				E85782D92ABB20DF00BAA76B /* Constraintable.swift */,
 				E85782DC2ABB232300BAA76B /* UIView+Constraint.swift */,
 				E85782DF2ABB270500BAA76B /* Constraintable+Basic.swift */,
+				E80FE6042AC1CB2000C1BEC7 /* Constraintable+Size.swift */,
+				E80FE6062AC1CC4D00C1BEC7 /* Constraintable+Center.swift */,
+				E80FE6092AC1D23E00C1BEC7 /* Constraintable+Fill.swift */,
 			);
 			path = Constraintable;
 			sourceTree = "<group>";
@@ -151,8 +160,11 @@
 				E85782E02ABB270500BAA76B /* Constraintable+Basic.swift in Sources */,
 				E85782DA2ABB20DF00BAA76B /* Constraintable.swift in Sources */,
 				E82CE74A2AAB3113009714EC /* ViewController.swift in Sources */,
+				E80FE6052AC1CB2000C1BEC7 /* Constraintable+Size.swift in Sources */,
 				E82CE7462AAB3113009714EC /* AppDelegate.swift in Sources */,
 				E85782DD2ABB232300BAA76B /* UIView+Constraint.swift in Sources */,
+				E80FE6072AC1CC4D00C1BEC7 /* Constraintable+Center.swift in Sources */,
+				E80FE60A2AC1D23E00C1BEC7 /* Constraintable+Fill.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

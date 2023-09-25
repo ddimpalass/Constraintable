@@ -9,22 +9,22 @@ import UIKit
 
 public extension Constraintable {
     @discardableResult
-    func setLeading(constant: CGFloat = 0) -> Self {
-        return set(constraint: .leading, relation: .equal, toView: parent, toConstraint: .leading, multiplier: 1, constant: constant)
+    func setLeading(toView view: Constraintable? = nil, constant: CGFloat = 0, insetsFromSafeArea: Bool = false) -> Self {
+        return set(constraint: .leading, relation: .equal, toView: view ?? parent, toConstraint: .leading, multiplier: 1, constant: constant, insetsFromSafeArea: insetsFromSafeArea)
     }
     
     @discardableResult
-    func setTrailing(constant: CGFloat = 0) -> Self {
-        return set(constraint: .trailing, relation: .equal, toView: parent, toConstraint: .trailing, multiplier: 1, constant: -constant)
+    func setTrailing(toView view: Constraintable? = nil, constant: CGFloat = 0, insetsFromSafeArea: Bool = false) -> Self {
+        return set(constraint: .trailing, relation: .equal, toView: view ?? parent, toConstraint: .trailing, multiplier: 1, constant: -constant, insetsFromSafeArea: insetsFromSafeArea)
     }
     
     @discardableResult
-    func setTop(constant: CGFloat = 0) -> Self {
-        return set(constraint: .top, relation: .equal, toView: parent, toConstraint: .top, multiplier: 1, constant: constant)
+    func setTop(toView view: Constraintable? = nil, constant: CGFloat = 0, insetsFromSafeArea: Bool = false) -> Self {
+        return set(constraint: .top, relation: .equal, toView: view ?? parent, toConstraint: .top, multiplier: 1, constant: constant, insetsFromSafeArea: insetsFromSafeArea)
     }
     
     @discardableResult
-    func setBottom(constant: CGFloat = 0) -> Self {
-        return set(constraint: .bottom, relation: .equal, toView: parent, toConstraint: .bottom, multiplier: 1, constant: -constant)
+    func setBottom(toView view: Constraintable? = nil, constant: CGFloat = 0, insetsFromSafeArea:  Bool = false) -> Self {
+        return set(constraint: .bottom, relation: .equal, toView: view ?? parent, toConstraint: .bottom, multiplier: 1, constant: -constant, insetsFromSafeArea: insetsFromSafeArea)
     }
 }

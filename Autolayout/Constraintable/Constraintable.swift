@@ -9,17 +9,18 @@ import UIKit
 
 
 public enum ConstraintableAttribute: Int {
-    case left = 1
-    case right = 2
-    case top = 3
-    case bottom = 4
-    case leading = 5
-    case trailing = 6
-    case width = 7
-    case height = 8
-    case centerX = 9
-    case centerY = 10
-    case lastBaseline = 11
+    case none
+    case left
+    case right
+    case top
+    case bottom
+    case leading
+    case trailing
+    case width
+    case height
+    case centerX
+    case centerY
+    case lastBaseline
 }
 
 public protocol Constraintable: UIView {
@@ -30,14 +31,16 @@ public extension Constraintable {
     @discardableResult
     func set(constraint: ConstraintableAttribute,
              relation: NSLayoutConstraint.Relation,
-             toView: UIView?,
+             toView view: UIView?,
              toConstraint: ConstraintableAttribute,
              multiplier: CGFloat,
-             constant: CGFloat) -> Self {
+             constant: CGFloat,
+             insetsFromSafeArea: Bool) -> Self {
+        self.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(item: self,
                            attribute: NSLayoutConstraint.Attribute(rawValue: constraint.rawValue) ?? .notAnAttribute,
                            relatedBy: relation,
-                           toItem: toView,
+                           toItem: insetsFromSafeArea ? view?.safeAreaLayoutGuide : view,
                            attribute: NSLayoutConstraint.Attribute(rawValue: toConstraint.rawValue) ?? .notAnAttribute,
                            multiplier: multiplier,
                            constant: constant).isActive = true
