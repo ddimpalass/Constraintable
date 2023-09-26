@@ -29,21 +29,32 @@ public protocol Constraintable: UIView {
 
 public extension Constraintable {
     @discardableResult
-    func set(constraint: ConstraintableAttribute,
+    func set(constraint attribute: ConstraintableAttribute,
              relation: NSLayoutConstraint.Relation,
              toView view: UIView?,
-             toConstraint: ConstraintableAttribute,
+             toConstraint toAttribute: ConstraintableAttribute,
              multiplier: CGFloat,
              constant: CGFloat,
              insetsFromSafeArea: Bool) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint(item: self,
-                           attribute: NSLayoutConstraint.Attribute(rawValue: constraint.rawValue) ?? .notAnAttribute,
-                           relatedBy: relation,
-                           toItem: insetsFromSafeArea ? view?.safeAreaLayoutGuide : view,
-                           attribute: NSLayoutConstraint.Attribute(rawValue: toConstraint.rawValue) ?? .notAnAttribute,
-                           multiplier: multiplier,
-                           constant: constant).isActive = true
+        var viewAddress = ""
+        if let view {
+            viewAddress = "\(Unmanaged.passUnretained(view).toOpaque())"
+        }
+        if let constraint = constraints.first(where: { $0.identifier == "\(attribute.rawValue).\(relation.rawValue).\(viewAddress).\(attribute.rawValue).\(multiplier)" }) {
+            constraint.constant = constant
+        } else {
+            let constraint = NSLayoutConstraint(item: self,
+                               attribute: NSLayoutConstraint.Attribute(rawValue: attribute.rawValue) ?? .notAnAttribute,
+                               relatedBy: relation,
+                               toItem: insetsFromSafeArea ? view?.safeAreaLayoutGuide : view,
+                               attribute: NSLayoutConstraint.Attribute(rawValue: toAttribute.rawValue) ?? .notAnAttribute,
+                               multiplier: multiplier,
+                               constant: constant)
+            constraint.identifier = "\(attribute.rawValue).\(relation.rawValue).\(viewAddress).\(attribute.rawValue).\(multiplier)"
+            constraint.isActive = true
+
+        }
         return self
     }
 }

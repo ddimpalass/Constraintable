@@ -14,14 +14,30 @@ final class ViewController: UIViewController {
         return view
     }()
 
+    lazy var button: UIButton = {
+        let button = UIButton(type: .close)
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        return button
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
         view.addSubview(greenView)
+        view.addSubview(button)
         greenView
             .fillWidth(margin: 20)
             .setHeight(constant: 50)
             .setTop(insetsFromSafeArea: true)
+        button
+            .setSize(width: 50, height: 50)
+            .setCenter()
+    }
+    
+    @objc
+    func buttonTapped(sender: UIButton) {
+        greenView
+            .setHeight(constant: 100)
     }
 }
 
