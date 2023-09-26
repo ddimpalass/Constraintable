@@ -16,9 +16,9 @@ public extension Constraintable {
         setWidth(constant: width, 
                  priority: priority,
                  active: active)
-            .setHeight(constant: height, 
-                       priority: priority,
-                       active: active)
+        .setHeight(constant: height, 
+                   priority: priority,
+                   active: active)
     }
     
     @discardableResult

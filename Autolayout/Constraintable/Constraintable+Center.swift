@@ -20,11 +20,11 @@ public extension Constraintable {
                    insetsFromSafeArea: insetsFromSafeArea,
                    priority: priority,
                    active: active)
-            .setCenterY(toView: view, 
-                        offset: offsetY,
-                        insetsFromSafeArea: insetsFromSafeArea,
-                        priority: priority,
-                        active: active)
+        .setCenterY(toView: view, 
+                    offset: offsetY,
+                    insetsFromSafeArea: insetsFromSafeArea,
+                    priority: priority,
+                    active: active)
     }
     
     @discardableResult

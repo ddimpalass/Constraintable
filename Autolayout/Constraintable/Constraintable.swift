@@ -49,12 +49,12 @@ public extension Constraintable {
             constraint.isActive = isActive
         } else {
             let constraint = NSLayoutConstraint(item: self,
-                               attribute: NSLayoutConstraint.Attribute(rawValue: attribute.rawValue) ?? .notAnAttribute,
-                               relatedBy: relation,
-                               toItem: insetsFromSafeArea ? view?.safeAreaLayoutGuide : view,
-                               attribute: NSLayoutConstraint.Attribute(rawValue: toAttribute.rawValue) ?? .notAnAttribute,
-                               multiplier: multiplier,
-                               constant: constant)
+                                                attribute: NSLayoutConstraint.Attribute(rawValue: attribute.rawValue) ?? .notAnAttribute,
+                                                relatedBy: relation,
+                                                toItem: insetsFromSafeArea ? view?.safeAreaLayoutGuide : view,
+                                                attribute: NSLayoutConstraint.Attribute(rawValue: toAttribute.rawValue) ?? .notAnAttribute,
+                                                multiplier: multiplier,
+                                                constant: constant)
             constraint.identifier = "\(attribute.rawValue).\(relation.rawValue).\(viewAddress).\(attribute.rawValue).\(multiplier)"
             constraint.priority = priority
             constraint.isActive = isActive
