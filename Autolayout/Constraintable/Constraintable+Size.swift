@@ -9,19 +9,33 @@ import UIKit
 
 public extension Constraintable {
     @discardableResult
-    func setSize(width: CGFloat, height: CGFloat) -> Self {
-        set(constraint: .width, relation: .equal, toView: nil, toConstraint: .none, multiplier: 1, constant: width, insetsFromSafeArea: false)
-        set(constraint: .height, relation: .equal, toView: nil, toConstraint: .none, multiplier: 1, constant: height, insetsFromSafeArea: false)
+    func setSize(width: CGFloat, height: CGFloat, priority: UILayoutPriority = .required) -> Self {
+        setWidth(constant: width, priority: priority)
+        setHeight(constant: height, priority: priority)
         return self
     }
     
     @discardableResult
-    func setWidth(constant: CGFloat) -> Self {
-        return set(constraint: .width, relation: .equal, toView: nil, toConstraint: .none, multiplier: 1, constant: constant, insetsFromSafeArea: false)
+    func setWidth(constant: CGFloat, priority: UILayoutPriority = .required) -> Self {
+        return set(constraint: .width, 
+                   relation: .equal,
+                   toView: nil,
+                   toConstraint: .none,
+                   multiplier: 1,
+                   constant: constant,
+                   insetsFromSafeArea: false,
+                   priority: priority)
     }
     
     @discardableResult
-    func setHeight(constant: CGFloat) -> Self {
-        return set(constraint: .height, relation: .equal, toView: nil, toConstraint: .none, multiplier: 1, constant: constant, insetsFromSafeArea: false)
+    func setHeight(constant: CGFloat, priority: UILayoutPriority = .required) -> Self {
+        return set(constraint: .height,
+                   relation: .equal,
+                   toView: nil,
+                   toConstraint: .none,
+                   multiplier: 1,
+                   constant: constant,
+                   insetsFromSafeArea: false,
+                   priority: priority)
     }
 }

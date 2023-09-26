@@ -9,19 +9,33 @@ import UIKit
 
 public extension Constraintable {
     @discardableResult
-    func setCenter(toView view: Constraintable? = nil, offsetX: CGFloat = 0, offsetY: CGFloat = 0, insetsFromSafeArea: Bool = false) -> Self {
-        setCenterX(toView: view, offset: offsetX, insetsFromSafeArea: insetsFromSafeArea)
-        setCenterY(toView: view, offset: offsetY, insetsFromSafeArea: insetsFromSafeArea)
+    func setCenter(toView view: Constraintable? = nil, offsetX: CGFloat = 0, offsetY: CGFloat = 0, insetsFromSafeArea: Bool = false, priority: UILayoutPriority = .required) -> Self {
+        setCenterX(toView: view, offset: offsetX, insetsFromSafeArea: insetsFromSafeArea, priority: priority)
+        setCenterY(toView: view, offset: offsetY, insetsFromSafeArea: insetsFromSafeArea, priority: priority)
         return self
     }
     
     @discardableResult
-    func setCenterX(toView view: Constraintable? = nil, offset: CGFloat = 0, insetsFromSafeArea: Bool = false) -> Self {
-        set(constraint: .centerX, relation: .equal, toView: view ?? parent, toConstraint: .centerX, multiplier: 1, constant: offset, insetsFromSafeArea: insetsFromSafeArea)
+    func setCenterX(toView view: Constraintable? = nil, offset: CGFloat = 0, insetsFromSafeArea: Bool = false, priority: UILayoutPriority = .required) -> Self {
+        set(constraint: .centerX,
+            relation: .equal,
+            toView: view ?? parent,
+            toConstraint: .centerX,
+            multiplier: 1,
+            constant: offset,
+            insetsFromSafeArea: insetsFromSafeArea,
+            priority: priority)
     }
     
     @discardableResult
-    func setCenterY(toView view: Constraintable? = nil, offset: CGFloat = 0, insetsFromSafeArea: Bool = false) -> Self {
-        set(constraint: .centerY, relation: .equal, toView: view ?? parent, toConstraint: .centerY, multiplier: 1, constant: offset, insetsFromSafeArea: insetsFromSafeArea)
+    func setCenterY(toView view: Constraintable? = nil, offset: CGFloat = 0, insetsFromSafeArea: Bool = false, priority: UILayoutPriority = .required) -> Self {
+        set(constraint: .centerY,
+            relation: .equal,
+            toView: view ?? parent,
+            toConstraint: .centerY,
+            multiplier: 1,
+            constant: offset,
+            insetsFromSafeArea: insetsFromSafeArea,
+            priority: priority)
     }
 }
