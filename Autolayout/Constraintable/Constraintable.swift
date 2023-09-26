@@ -36,7 +36,8 @@ public extension Constraintable {
              multiplier: CGFloat,
              constant: CGFloat,
              insetsFromSafeArea: Bool,
-             priority: UILayoutPriority) -> Self {
+             priority: UILayoutPriority,
+             active isActive: Bool) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
         var viewAddress = ""
         if let view {
@@ -45,6 +46,7 @@ public extension Constraintable {
         if let constraint = constraints.first(where: { $0.identifier == "\(attribute.rawValue).\(relation.rawValue).\(viewAddress).\(attribute.rawValue).\(multiplier)" }) {
             constraint.constant = constant
             constraint.priority = priority
+            constraint.isActive = isActive
         } else {
             let constraint = NSLayoutConstraint(item: self,
                                attribute: NSLayoutConstraint.Attribute(rawValue: attribute.rawValue) ?? .notAnAttribute,
@@ -55,7 +57,7 @@ public extension Constraintable {
                                constant: constant)
             constraint.identifier = "\(attribute.rawValue).\(relation.rawValue).\(viewAddress).\(attribute.rawValue).\(multiplier)"
             constraint.priority = priority
-            constraint.isActive = true
+            constraint.isActive = isActive
         }
         return self
     }

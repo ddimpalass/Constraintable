@@ -9,14 +9,30 @@ import UIKit
 
 public extension Constraintable {
     @discardableResult
-    func setCenter(toView view: Constraintable? = nil, offsetX: CGFloat = 0, offsetY: CGFloat = 0, insetsFromSafeArea: Bool = false, priority: UILayoutPriority = .required) -> Self {
-        setCenterX(toView: view, offset: offsetX, insetsFromSafeArea: insetsFromSafeArea, priority: priority)
-        setCenterY(toView: view, offset: offsetY, insetsFromSafeArea: insetsFromSafeArea, priority: priority)
-        return self
+    func setCenter(toView view: Constraintable? = nil,
+                   offsetX: CGFloat = 0,
+                   offsetY: CGFloat = 0,
+                   insetsFromSafeArea: Bool = false,
+                   priority: UILayoutPriority = .required,
+                   active: Bool = true) -> Self {
+        setCenterX(toView: view, 
+                   offset: offsetX,
+                   insetsFromSafeArea: insetsFromSafeArea,
+                   priority: priority,
+                   active: active)
+            .setCenterY(toView: view, 
+                        offset: offsetY,
+                        insetsFromSafeArea: insetsFromSafeArea,
+                        priority: priority,
+                        active: active)
     }
     
     @discardableResult
-    func setCenterX(toView view: Constraintable? = nil, offset: CGFloat = 0, insetsFromSafeArea: Bool = false, priority: UILayoutPriority = .required) -> Self {
+    func setCenterX(toView view: Constraintable? = nil,
+                    offset: CGFloat = 0,
+                    insetsFromSafeArea: Bool = false,
+                    priority: UILayoutPriority = .required,
+                    active: Bool = true) -> Self {
         set(constraint: .centerX,
             relation: .equal,
             toView: view ?? parent,
@@ -24,11 +40,16 @@ public extension Constraintable {
             multiplier: 1,
             constant: offset,
             insetsFromSafeArea: insetsFromSafeArea,
-            priority: priority)
+            priority: priority,
+            active: active)
     }
     
     @discardableResult
-    func setCenterY(toView view: Constraintable? = nil, offset: CGFloat = 0, insetsFromSafeArea: Bool = false, priority: UILayoutPriority = .required) -> Self {
+    func setCenterY(toView view: Constraintable? = nil,
+                    offset: CGFloat = 0,
+                    insetsFromSafeArea: Bool = false,
+                    priority: UILayoutPriority = .required,
+                    active: Bool = true) -> Self {
         set(constraint: .centerY,
             relation: .equal,
             toView: view ?? parent,
@@ -36,6 +57,7 @@ public extension Constraintable {
             multiplier: 1,
             constant: offset,
             insetsFromSafeArea: insetsFromSafeArea,
-            priority: priority)
+            priority: priority,
+            active: active)
     }
 }

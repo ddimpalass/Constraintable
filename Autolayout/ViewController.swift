@@ -26,7 +26,7 @@ final class ViewController: UIViewController {
         view.addSubview(greenView)
         view.addSubview(button)
         greenView
-            .fillWidth(margin: 20)
+            .fillWidth(offset: 20)
             .setHeight(constant: 50)
             .setTop(insetsFromSafeArea: true)
         button

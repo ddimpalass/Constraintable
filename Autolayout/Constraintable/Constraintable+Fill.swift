@@ -9,23 +9,44 @@ import UIKit
 
 public extension Constraintable {
     @discardableResult
-    func fill(toView view: Constraintable? = nil, insetsFromSafeArea: Bool = false) -> Self {
-        fillWidth(toView: view, insetsFromSafeArea: insetsFromSafeArea)
-        fillHeight(toView: view, insetsFromSafeArea: insetsFromSafeArea)
-        return self
+    func fill(toView view: Constraintable? = nil, 
+              insetsFromSafeArea: Bool = false,
+              active: Bool = true) -> Self {
+        fillWidth(toView: view, 
+                  insetsFromSafeArea: insetsFromSafeArea,
+                  active: active)
+            .fillHeight(toView: view, 
+                        insetsFromSafeArea: insetsFromSafeArea,
+                        active: active)
     }
     
     @discardableResult
-    func fillWidth(toView view: Constraintable? = nil, margin: CGFloat = 0, insetsFromSafeArea: Bool = false) -> Self {
-        setLeading(toView: view, constant: margin, insetsFromSafeArea: insetsFromSafeArea)
-        setTrailing(toView: view, constant: margin, insetsFromSafeArea: insetsFromSafeArea)
-        return self
+    func fillWidth(toView view: Constraintable? = nil, 
+                   offset: CGFloat = 0,
+                   insetsFromSafeArea: Bool = false,
+                   active: Bool = true) -> Self {
+        setLeading(toView: view, 
+                   offset: offset,
+                   insetsFromSafeArea: insetsFromSafeArea,
+                   active: active)
+            .setTrailing(toView: view, 
+                         offset: offset,
+                         insetsFromSafeArea: insetsFromSafeArea,
+                         active: active)
     }
     
     @discardableResult
-    func fillHeight(toView view: Constraintable? = nil, margin: CGFloat = 0, insetsFromSafeArea: Bool = false) -> Self {
-        setTop(toView: view, constant: margin, insetsFromSafeArea: insetsFromSafeArea)
-        setBottom(toView: view, constant: margin, insetsFromSafeArea: insetsFromSafeArea)
-        return self
+    func fillHeight(toView view: Constraintable? = nil, 
+                    offset: CGFloat = 0,
+                    insetsFromSafeArea: Bool = false,
+                    active: Bool = true) -> Self {
+        setTop(toView: view, 
+               offset: offset,
+               insetsFromSafeArea: insetsFromSafeArea,
+               active: active)
+            .setBottom(toView: view, 
+                       offset: offset,
+                       insetsFromSafeArea: insetsFromSafeArea,
+                       active: active)
     }
 }
