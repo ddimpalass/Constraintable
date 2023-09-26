@@ -17,6 +17,7 @@
 		E85782DA2ABB20DF00BAA76B /* Constraintable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85782D92ABB20DF00BAA76B /* Constraintable.swift */; };
 		E85782DD2ABB232300BAA76B /* UIView+Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85782DC2ABB232300BAA76B /* UIView+Constraint.swift */; };
 		E85782E02ABB270500BAA76B /* Constraintable+Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85782DF2ABB270500BAA76B /* Constraintable+Basic.swift */; };
+		E8A4D5C72AC326C30005EE25 /* Constraintable+Remove.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8A4D5C62AC326C30005EE25 /* Constraintable+Remove.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		E85782D92ABB20DF00BAA76B /* Constraintable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraintable.swift; sourceTree = "<group>"; };
 		E85782DC2ABB232300BAA76B /* UIView+Constraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraint.swift"; sourceTree = "<group>"; };
 		E85782DF2ABB270500BAA76B /* Constraintable+Basic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constraintable+Basic.swift"; sourceTree = "<group>"; };
+		E8A4D5C62AC326C30005EE25 /* Constraintable+Remove.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constraintable+Remove.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				E80FE6042AC1CB2000C1BEC7 /* Constraintable+Size.swift */,
 				E80FE6062AC1CC4D00C1BEC7 /* Constraintable+Center.swift */,
 				E80FE6092AC1D23E00C1BEC7 /* Constraintable+Fill.swift */,
+				E8A4D5C62AC326C30005EE25 /* Constraintable+Remove.swift */,
 			);
 			path = Constraintable;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			files = (
 				E85782E02ABB270500BAA76B /* Constraintable+Basic.swift in Sources */,
 				E85782DA2ABB20DF00BAA76B /* Constraintable.swift in Sources */,
+				E8A4D5C72AC326C30005EE25 /* Constraintable+Remove.swift in Sources */,
 				E82CE74A2AAB3113009714EC /* ViewController.swift in Sources */,
 				E80FE6052AC1CB2000C1BEC7 /* Constraintable+Size.swift in Sources */,
 				E82CE7462AAB3113009714EC /* AppDelegate.swift in Sources */,

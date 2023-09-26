@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 public enum ConstraintableAttribute: Int {
     case none
     case left

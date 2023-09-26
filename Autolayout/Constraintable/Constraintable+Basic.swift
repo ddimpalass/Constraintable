@@ -11,11 +11,12 @@ public extension Constraintable {
     @discardableResult
     func setLeading(toView view: Constraintable? = nil,
                     offset: CGFloat = 0,
+                    relation: NSLayoutConstraint.Relation = .equal,
                     insetsFromSafeArea: Bool = false,
                     priority: UILayoutPriority = .required,
                     active: Bool = true) -> Self {
         set(constraint: .leading,
-            relation: .equal,
+            relation: relation,
             toView: view ?? parent,
             toConstraint: .leading,
             multiplier: 1,
@@ -28,11 +29,12 @@ public extension Constraintable {
     @discardableResult
     func setTrailing(toView view: Constraintable? = nil,
                      offset: CGFloat = 0,
+                     relation: NSLayoutConstraint.Relation = .equal,
                      insetsFromSafeArea: Bool = false,
                      priority: UILayoutPriority = .required,
                      active: Bool = true) -> Self {
         set(constraint: .trailing,
-            relation: .equal,
+            relation: relation,
             toView: view ?? parent,
             toConstraint: .trailing,
             multiplier: 1,
@@ -45,11 +47,12 @@ public extension Constraintable {
     @discardableResult
     func setTop(toView view: Constraintable? = nil,
                 offset: CGFloat = 0,
+                relation: NSLayoutConstraint.Relation = .equal,
                 insetsFromSafeArea: Bool = false,
                 priority: UILayoutPriority = .required,
                 active: Bool = true) -> Self {
         set(constraint: .top,
-            relation: .equal,
+            relation: relation,
             toView: view ?? parent,
             toConstraint: .top,
             multiplier: 1,
@@ -62,11 +65,12 @@ public extension Constraintable {
     @discardableResult
     func setBottom(toView view: Constraintable? = nil,
                    offset: CGFloat = 0,
+                   relation: NSLayoutConstraint.Relation = .equal,
                    insetsFromSafeArea:  Bool = false,
                    priority: UILayoutPriority = .required,
                    active: Bool = true) -> Self {
         set(constraint: .bottom,
-            relation: .equal,
+            relation: relation,
             toView: view ?? parent,
             toConstraint: .bottom,
             multiplier: 1,
