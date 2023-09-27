@@ -28,35 +28,75 @@ public protocol Constraintable: UIView {
 
 public extension Constraintable {
     @discardableResult
-    func set(constraint attribute: ConstraintableAttribute,
+    func set(attribute: ConstraintableAttribute,
              relation: NSLayoutConstraint.Relation,
              toView view: UIView?,
-             toConstraint toAttribute: ConstraintableAttribute,
+             toAttribute: ConstraintableAttribute,
+             multiplier: CGFloat = 1,
              constant: CGFloat,
              insetsFromSafeArea: Bool,
              priority: UILayoutPriority,
              active isActive: Bool) -> Self {
-        self.translatesAutoresizingMaskIntoConstraints = false
         var viewAddress = ""
         if let view {
             viewAddress = "\(Unmanaged.passUnretained(view).toOpaque())"
         }
-        if let constraint = constraints.first(where: { $0.identifier == "\(attribute.rawValue).\(relation.rawValue).\(viewAddress).\(attribute.rawValue)" }) {
-            constraint.constant = constant
-            constraint.priority = priority
-            constraint.isActive = isActive
+        let identifier = "\(attribute.rawValue).\(relation.rawValue).\(viewAddress).\(attribute.rawValue).\(multiplier)"
+        if let constraint = constraints.first(where: { $0.identifier == identifier }) {
+            update(constraint: constraint,
+                   constant: constant,
+                   priority: priority,
+                   active: isActive)
         } else {
-            let constraint = NSLayoutConstraint(item: self,
-                                                attribute: NSLayoutConstraint.Attribute(rawValue: attribute.rawValue) ?? .notAnAttribute,
-                                                relatedBy: relation,
-                                                toItem: insetsFromSafeArea ? view?.safeAreaLayoutGuide : view,
-                                                attribute: NSLayoutConstraint.Attribute(rawValue: toAttribute.rawValue) ?? .notAnAttribute,
-                                                multiplier: 1,
-                                                constant: constant)
-            constraint.identifier = "\(attribute.rawValue).\(relation.rawValue).\(viewAddress).\(attribute.rawValue)"
-            constraint.priority = priority
-            constraint.isActive = isActive
+            set(attribute: attribute,
+                relation: relation,
+                toView: view,
+                toAttribute: toAttribute,
+                multiplier: multiplier,
+                constant: constant,
+                insetsFromSafeArea: insetsFromSafeArea,
+                priority: priority,
+                active: isActive,
+                identifier: identifier)
         }
+        return self
+    }
+}
+
+private extension Constraintable {
+    @discardableResult
+    private func set(attribute: ConstraintableAttribute,
+                     relation: NSLayoutConstraint.Relation,
+                     toView view: UIView?,
+                     toAttribute: ConstraintableAttribute,
+                     multiplier: CGFloat,
+                     constant: CGFloat,
+                     insetsFromSafeArea: Bool,
+                     priority: UILayoutPriority,
+                     active isActive: Bool,
+                     identifier: String) -> Self {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        let constraint = NSLayoutConstraint(item: self,
+                                            attribute: NSLayoutConstraint.Attribute(rawValue: attribute.rawValue) ?? .notAnAttribute,
+                                            relatedBy: relation,
+                                            toItem: insetsFromSafeArea ? view?.safeAreaLayoutGuide : view,
+                                            attribute: NSLayoutConstraint.Attribute(rawValue: toAttribute.rawValue) ?? .notAnAttribute,
+                                            multiplier: multiplier,
+                                            constant: constant)
+        constraint.identifier = identifier
+        constraint.priority = priority
+        constraint.isActive = isActive
+        return self
+    }
+    
+    @discardableResult
+    private func update(constraint: NSLayoutConstraint,
+                        constant: CGFloat,
+                        priority: UILayoutPriority,
+                        active isActive: Bool) -> Self {
+        constraint.constant = constant
+        constraint.priority = priority
+        constraint.isActive = isActive
         return self
     }
 }

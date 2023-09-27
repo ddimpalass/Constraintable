@@ -10,16 +10,16 @@ import UIKit
 public extension Constraintable {
     @discardableResult
     func setLeading(toView view: Constraintable? = nil,
-                    constraint: ConstraintableAttribute = .leading,
+                    attribute: ConstraintableAttribute = .leading,
                     offset: CGFloat = 0,
                     relation: NSLayoutConstraint.Relation = .equal,
                     insetsFromSafeArea: Bool = false,
                     priority: UILayoutPriority = .required,
                     active: Bool = true) -> Self {
-        set(constraint: .leading,
+        set(attribute: .leading,
             relation: relation,
             toView: view ?? parent,
-            toConstraint: constraint,
+            toAttribute: attribute,
             constant: offset,
             insetsFromSafeArea: insetsFromSafeArea,
             priority: priority,
@@ -28,16 +28,16 @@ public extension Constraintable {
     
     @discardableResult
     func setTrailing(toView view: Constraintable? = nil,
-                     constraint: ConstraintableAttribute = .trailing,
+                     attribute: ConstraintableAttribute = .trailing,
                      offset: CGFloat = 0,
                      relation: NSLayoutConstraint.Relation = .equal,
                      insetsFromSafeArea: Bool = false,
                      priority: UILayoutPriority = .required,
                      active: Bool = true) -> Self {
-        set(constraint: .trailing,
+        set(attribute: .trailing,
             relation: relation,
             toView: view ?? parent,
-            toConstraint: constraint,
+            toAttribute: attribute,
             constant: -offset,
             insetsFromSafeArea: insetsFromSafeArea,
             priority: priority,
@@ -46,16 +46,16 @@ public extension Constraintable {
     
     @discardableResult
     func setTop(toView view: Constraintable? = nil,
-                constraint: ConstraintableAttribute = .top,
+                attribute: ConstraintableAttribute = .top,
                 offset: CGFloat = 0,
                 relation: NSLayoutConstraint.Relation = .equal,
                 insetsFromSafeArea: Bool = false,
                 priority: UILayoutPriority = .required,
                 active: Bool = true) -> Self {
-        set(constraint: .top,
+        set(attribute: .top,
             relation: relation,
             toView: view ?? parent,
-            toConstraint: constraint,
+            toAttribute: attribute,
             constant: offset,
             insetsFromSafeArea: insetsFromSafeArea,
             priority: priority,
@@ -64,16 +64,16 @@ public extension Constraintable {
     
     @discardableResult
     func setBottom(toView view: Constraintable? = nil,
-                   constraint: ConstraintableAttribute = .bottom,
+                   attribute: ConstraintableAttribute = .bottom,
                    offset: CGFloat = 0,
                    relation: NSLayoutConstraint.Relation = .equal,
                    insetsFromSafeArea:  Bool = false,
                    priority: UILayoutPriority = .required,
                    active: Bool = true) -> Self {
-        set(constraint: .bottom,
+        set(attribute: .bottom,
             relation: relation,
             toView: view ?? parent,
-            toConstraint: constraint,
+            toAttribute: attribute,
             constant: -offset,
             insetsFromSafeArea: insetsFromSafeArea,
             priority: priority,

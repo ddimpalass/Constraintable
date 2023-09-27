@@ -9,47 +9,42 @@ import Constraintable
 import UIKit
 
 final class ViewController: UIViewController {
-    let greenView: UIView = {
+    let contentView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .cyan
+        return view
+    }()
+    
+    let exampleView: UIView = {
         let view = UIView()
         view.backgroundColor = .green
         return view
     }()
-    
-    let yellowView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .yellow
-        return view
-    }()
 
-    lazy var button: UIButton = {
-        let button = UIButton(type: .close)
-        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        return button
+    let tableView: UITableView = {
+        let view = UITableView()
+        view.backgroundColor = .green
+        return view
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
-        view.addSubview(greenView)
-        view.addSubview(yellowView)
-        view.addSubview(button)
-        greenView
+        view.backgroundColor = .white
+        view.addSubview(contentView)
+        view.addSubview(exampleView)
+        view.addSubview(tableView)
+        contentView
+            .setTop(insetsFromSafeArea: true)
+            .fillWidth(insetsFromSafeArea: true)
+            .setHeight(equalTo: tableView)
+        exampleView
             .fillWidth(offset: 20)
             .setHeight(constant: 50)
             .setTop(insetsFromSafeArea: true)
-        yellowView
-            .fillWidth(offset: 20)
-            .setHeight(constant: 50)
-            .setTop(toView: greenView, constraint: .bottom, offset: 20)
-        button
-            .setSize(width: 50, height: 50)
-            .setCenter()
-    }
-    
-    @objc
-    func buttonTapped(sender: UIButton) {
-        greenView
-            .setHeight(constant: 100)
+        tableView
+            .setTop(toView: contentView, attribute: .bottom)
+            .fillWidth(insetsFromSafeArea: true)
+            .setBottom(insetsFromSafeArea: true)
     }
 }
 
