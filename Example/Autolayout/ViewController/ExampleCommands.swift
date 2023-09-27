@@ -9,7 +9,7 @@ import Constraintable
 
 protocol ExampleCommands: CaseIterable {
     var description: String { get }
-    func action(view: Constraintable)
+    func action(view: Constraintable, isActive: Bool)
 }
 
 enum ConstraintableExampleType: String, CaseIterable {
@@ -45,16 +45,16 @@ enum BasicCommands: String, CaseIterable, ExampleCommands {
         rawValue
     }
     
-    func action(view: Constraintable) {
+    func action(view: Constraintable, isActive: Bool) {
         switch self {
         case .setLeading:
-            view.setLeading()
+            view.setLeading(active: isActive)
         case .setTrailing:
-            view.setTrailing()
+            view.setTrailing(active: isActive)
         case .setTop:
-            view.setTop()
+            view.setTop(active: isActive)
         case .setBottom:
-            view.setBottom()
+            view.setBottom(active: isActive)
         }
     }
 }
@@ -68,14 +68,14 @@ enum CenterCommands: String, CaseIterable, ExampleCommands {
         rawValue
     }
     
-    func action(view: Constraintable) {
+    func action(view: Constraintable, isActive: Bool) {
         switch self {
         case .setCenter:
-            view.setCenter()
+            view.setCenter(active: isActive)
         case .setCenterX:
-            view.setCenterX()
+            view.setCenterX(active: isActive)
         case .setCenterY:
-            view.setCenterY()
+            view.setCenterY(active: isActive)
         }
     }
 }
@@ -89,35 +89,35 @@ enum FillCommands: String, CaseIterable, ExampleCommands {
         rawValue
     }
     
-    func action(view: Constraintable) {
+    func action(view: Constraintable, isActive: Bool) {
         switch self {
         case .fill:
-            view.fill()
+            view.fill(active: isActive)
         case .fillWidth:
-            view.fillWidth()
+            view.fillWidth(active: isActive)
         case .fillHeight:
-            view.fillHeight()
+            view.fillHeight(active: isActive)
         }
     }
 }
 
 enum SizeCommands: String, CaseIterable, ExampleCommands {
-    case setSize = "Set size"
-    case setWidth = "Set width"
-    case setHeight = "Set height"
+    case setSize = "Set size (50, 50)"
+    case setWidth = "Set width (150)"
+    case setHeight = "Set height (100)"
     
     var description: String {
         rawValue
     }
     
-    func action(view: Constraintable) {
+    func action(view: Constraintable, isActive: Bool) {
         switch self {
         case .setSize:
-            view.setSize(width: 50, height: 50)
+            view.setSize(width: 50, height: 50, active: isActive)
         case .setWidth:
-            view.setWidth(constant: 150)
+            view.setWidth(constant: 150, active: isActive)
         case .setHeight:
-            view.setHeight(constant: 150)
+            view.setHeight(constant: 100, active: isActive)
         }
     }
 }
@@ -129,7 +129,7 @@ enum RemoveCommands: String, CaseIterable, ExampleCommands {
         rawValue
     }
     
-    func action(view: Constraintable) {
+    func action(view: Constraintable, isActive: Bool) {
         switch self {
         case .removeAllConstraints:
             view.removeAllConstraints()

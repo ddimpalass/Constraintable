@@ -78,14 +78,14 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let command = ConstraintableExampleType.allCases[indexPath.section].getCommands()[indexPath.row]
-        guard command.self is RemoveCommands else {
-            command.action(view: exampleView)
+        command.action(view: exampleView, isActive: !selectedIndexPaths.contains(indexPath))
+        if command.self is RemoveCommands {
+            selectedIndexPaths = []
+        } else if selectedIndexPaths.contains(indexPath) {
+            selectedIndexPaths.removeAll(where: { $0 == indexPath })
+        } else {
             selectedIndexPaths.append(indexPath)
-            tableView.reloadData()
-            return
         }
-        exampleView.removeAllConstraints()
-        selectedIndexPaths = []
         tableView.reloadData()
     }
 }
