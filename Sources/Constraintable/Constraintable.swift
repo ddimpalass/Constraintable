@@ -37,12 +37,17 @@ public extension Constraintable {
              insetsFromSafeArea: Bool,
              priority: UILayoutPriority,
              active isActive: Bool) -> Self {
-        var viewAddress = ""
+        var address = ""
         if let view {
-            viewAddress = "\(Unmanaged.passUnretained(view).toOpaque())"
+            address = "\(Unmanaged.passUnretained(self).toOpaque())\(Unmanaged.passUnretained(view).toOpaque())"
         }
-        let identifier = "\(attribute.rawValue).\(relation.rawValue).\(viewAddress).\(attribute.rawValue).\(multiplier)"
+        let identifier = "\(attribute.rawValue).\(relation.rawValue).\(address).\(attribute.rawValue).\(multiplier)"
         if let constraint = constraints.first(where: { $0.identifier == identifier }) {
+            update(constraint: constraint,
+                   constant: constant,
+                   priority: priority,
+                   active: isActive)
+        } else if let constraint = view?.constraints.first(where: { $0.identifier == identifier }) {
             update(constraint: constraint,
                    constant: constant,
                    priority: priority,
