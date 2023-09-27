@@ -2,10 +2,10 @@
 
 Constraintable is a simple wrapper for iOS to make Auto Layout easy.
 
-[![CI Status](https://img.shields.io/badge/build-available-emerald)
-[![Version](https://img.shields.io/badge/package-1.0.0-redbuild)
-[![License](https://img.shields.io/badge/license-MIT-lightgray)
-[![Platform](https://img.shields.io/badge/platform-iOS_-red)
+![CI Status](https://img.shields.io/badge/build-available-emerald)
+![Version](https://img.shields.io/badge/package-1.0.0-redbuild)
+![License](https://img.shields.io/badge/license-MIT-lightgray)
+![Platform](https://img.shields.io/badge/platform-iOS_-red)
 
 ## Example
 
