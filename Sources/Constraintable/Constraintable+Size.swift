@@ -22,6 +22,20 @@ public extension Constraintable {
     }
     
     @discardableResult
+    func setSize(equalTo view: UIView,
+                 relation: NSLayoutConstraint.Relation = .equal,
+                 multiplier: CGFloat = 1,
+                 priority: UILayoutPriority = .required,
+                 active: Bool = true) -> Self {
+        setWidth(equalTo: view,
+                 relation: relation,
+                 multiplier: multiplier)
+        .setHeight(equalTo: view,
+                   relation: relation,
+                   multiplier: multiplier)
+    }
+
+    @discardableResult
     func setWidth(constant: CGFloat,
                   priority: UILayoutPriority = .required,
                   active: Bool = true) -> Self {
