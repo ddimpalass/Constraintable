@@ -33,6 +33,10 @@ final class ViewController: UIViewController {
     
     private let cellIdentifier = "cellIdentifier"
     private var selectedIndexPaths: [IndexPath] = []
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .darkContent
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,11 +70,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier") else {
-            fatalError("You forgot to register your table view cell")
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier") else { return UITableViewCell() }
         cell.textLabel?.text = ConstraintableExampleType.allCases[indexPath.section].getCommands()[indexPath.row].description
-        cell.backgroundColor = .white
         cell.accessoryType = selectedIndexPaths.contains(indexPath) ? .checkmark : .none
         return cell
     }

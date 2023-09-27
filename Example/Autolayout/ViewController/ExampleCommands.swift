@@ -36,10 +36,10 @@ enum ConstraintableExampleType: String, CaseIterable {
 }
 
 enum BasicCommands: String, CaseIterable, ExampleCommands {
-    case setLeading = "Set leading"
-    case setTrailing = "Set trailing"
-    case setTop = "Set top"
-    case setBottom = "Set bottom"
+    case setLeading = ".setLeading()"
+    case setTrailing = ".setTrailing()"
+    case setTop = ".setTop()"
+    case setBottom = ".setBottom()"
 
     var description: String {
         rawValue
@@ -60,9 +60,9 @@ enum BasicCommands: String, CaseIterable, ExampleCommands {
 }
 
 enum CenterCommands: String, CaseIterable, ExampleCommands {
-    case setCenter = "Set center"
-    case setCenterX = "Set center x"
-    case setCenterY = "Set center y"
+    case setCenter = ".setCenter()"
+    case setCenterX = ".setCenterX()"
+    case setCenterY = ".setCenterY()"
     
     var description: String {
         rawValue
@@ -81,9 +81,9 @@ enum CenterCommands: String, CaseIterable, ExampleCommands {
 }
 
 enum FillCommands: String, CaseIterable, ExampleCommands {
-    case fill = "Fill"
-    case fillWidth = "Fill width"
-    case fillHeight = "Fill height"
+    case fill = ".fill()"
+    case fillWidth = ".fillWidth()"
+    case fillHeight = ".fillHeight()"
     
     var description: String {
         rawValue
@@ -102,9 +102,9 @@ enum FillCommands: String, CaseIterable, ExampleCommands {
 }
 
 enum SizeCommands: String, CaseIterable, ExampleCommands {
-    case setSize = "Set size (50, 50)"
-    case setWidth = "Set width (150)"
-    case setHeight = "Set height (100)"
+    case setSize = ".setSize(width: 50, height: 50)"
+    case setWidth = ".setWidth(constant: 150)"
+    case setHeight = ".setHeight(constant: 100)"
     
     var description: String {
         rawValue
@@ -123,7 +123,7 @@ enum SizeCommands: String, CaseIterable, ExampleCommands {
 }
 
 enum RemoveCommands: String, CaseIterable, ExampleCommands {
-    case removeAllConstraints = "Remove all constraints"
+    case removeAllConstraints = ".removeAllConstraints()"
     
     var description: String {
         rawValue
