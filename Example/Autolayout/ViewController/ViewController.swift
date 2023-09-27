@@ -32,6 +32,7 @@ final class ViewController: UIViewController {
     }()
     
     private let cellIdentifier = "cellIdentifier"
+    private var selectedIndexPaths: [IndexPath] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,19 +69,23 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellIdentifier") else {
             fatalError("You forgot to register your table view cell")
         }
-        var content = cell.defaultContentConfiguration()
-        content.text = ConstraintableExampleType.allCases[indexPath.section].getCommands()[indexPath.row].description
-        content.textProperties.color = .black
-        cell.contentConfiguration = content
+        cell.textLabel?.text = ConstraintableExampleType.allCases[indexPath.section].getCommands()[indexPath.row].description
         cell.backgroundColor = .white
+        cell.accessoryType = selectedIndexPaths.contains(indexPath) ? .checkmark : .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        ConstraintableExampleType.allCases[indexPath.section].getCommands()[indexPath.row].action(view: exampleView, isActive: true)
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        ConstraintableExampleType.allCases[indexPath.section].getCommands()[indexPath.row].action(view: exampleView, isActive: false)
+        tableView.deselectRow(at: indexPath, animated: true)
+        let command = ConstraintableExampleType.allCases[indexPath.section].getCommands()[indexPath.row]
+        guard command.self is RemoveCommands else {
+            command.action(view: exampleView)
+            selectedIndexPaths.append(indexPath)
+            tableView.reloadData()
+            return
+        }
+        exampleView.removeAllConstraints()
+        selectedIndexPaths = []
+        tableView.reloadData()
     }
 }
