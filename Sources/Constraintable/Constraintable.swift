@@ -5,6 +5,8 @@
 //  Created by Shchelochkov_D_S on 20.09.2023.
 //
 
+import CommonCrypto
+import CryptoKit
 import UIKit
 
 public enum ConstraintableAttribute: Int {
@@ -36,33 +38,35 @@ public extension Constraintable {
              constant: CGFloat,
              insetsFromSafeArea: Bool,
              priority: UILayoutPriority,
-             active isActive: Bool) -> Self {
-        var address = ""
-        if let view {
-            address = "\(Unmanaged.passUnretained(self).toOpaque())\(Unmanaged.passUnretained(view).toOpaque())"
-        }
-        let identifier = "\(attribute.rawValue).\(relation.rawValue).\(address).\(attribute.rawValue).\(multiplier)"
+             active isActive: Bool,
+             identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
+        let identifier = createConstraintIdentifier(identifier,
+                                                    attribute: attribute,
+                                                    relation: relation,
+                                                    toView: view,
+                                                    toAttribute: toAttribute,
+                                                    multiplier: multiplier)
         if let constraint = constraints.first(where: { $0.identifier == identifier }) {
-            update(constraint: constraint,
-                   constant: constant,
-                   priority: priority,
-                   active: isActive)
+            updateConstraint(constraint,
+                             constant: constant,
+                             priority: priority,
+                             active: isActive)
         } else if let constraint = view?.constraints.first(where: { $0.identifier == identifier }) {
-            update(constraint: constraint,
-                   constant: constant,
-                   priority: priority,
-                   active: isActive)
+            updateConstraint(constraint,
+                             constant: constant,
+                             priority: priority,
+                             active: isActive)
         } else {
-            set(attribute: attribute,
-                relation: relation,
-                toView: view,
-                toAttribute: toAttribute,
-                multiplier: multiplier,
-                constant: constant,
-                insetsFromSafeArea: insetsFromSafeArea,
-                priority: priority,
-                active: isActive,
-                identifier: identifier)
+            setConstraint(attribute: attribute,
+                          relation: relation,
+                          toView: view,
+                          toAttribute: toAttribute,
+                          multiplier: multiplier,
+                          constant: constant,
+                          insetsFromSafeArea: insetsFromSafeArea,
+                          priority: priority,
+                          active: isActive,
+                          identifier: identifier)
         }
         return self
     }
@@ -70,16 +74,16 @@ public extension Constraintable {
 
 private extension Constraintable {
     @discardableResult
-    private func set(attribute: ConstraintableAttribute,
-                     relation: NSLayoutConstraint.Relation,
-                     toView view: UIView?,
-                     toAttribute: ConstraintableAttribute,
-                     multiplier: CGFloat,
-                     constant: CGFloat,
-                     insetsFromSafeArea: Bool,
-                     priority: UILayoutPriority,
-                     active isActive: Bool,
-                     identifier: String) -> Self {
+    private func setConstraint(attribute: ConstraintableAttribute,
+                               relation: NSLayoutConstraint.Relation,
+                               toView view: UIView?,
+                               toAttribute: ConstraintableAttribute,
+                               multiplier: CGFloat,
+                               constant: CGFloat,
+                               insetsFromSafeArea: Bool,
+                               priority: UILayoutPriority,
+                               active isActive: Bool,
+                               identifier: String) -> Self {
         self.translatesAutoresizingMaskIntoConstraints = false
         let constraint = NSLayoutConstraint(item: self,
                                             attribute: NSLayoutConstraint.Attribute(rawValue: attribute.rawValue) ?? .notAnAttribute,
@@ -95,13 +99,27 @@ private extension Constraintable {
     }
     
     @discardableResult
-    private func update(constraint: NSLayoutConstraint,
-                        constant: CGFloat,
-                        priority: UILayoutPriority,
-                        active isActive: Bool) -> Self {
+    private func updateConstraint(_ constraint: NSLayoutConstraint,
+                                  constant: CGFloat,
+                                  priority: UILayoutPriority,
+                                  active isActive: Bool) -> Self {
         constraint.constant = constant
         constraint.priority = priority
         constraint.isActive = isActive
         return self
+    }
+    
+    private func createConstraintIdentifier(_ identifier: String,
+                                            attribute: ConstraintableAttribute,
+                                            relation: NSLayoutConstraint.Relation,
+                                            toView view: UIView?,
+                                            toAttribute: ConstraintableAttribute,
+                                            multiplier: CGFloat) -> String {
+        var address = ""
+        if let view {
+            address = "\(Unmanaged.passUnretained(self).toOpaque())\(Unmanaged.passUnretained(view).toOpaque())"
+        }
+        let hashId = SHA256.hash(data: Data("\(attribute.rawValue).\(relation.rawValue).\(address).\(toAttribute.rawValue).\(multiplier)".utf8))
+        return "identifier: \(identifier), hashValue: \(hashId.hashValue)"
     }
 }

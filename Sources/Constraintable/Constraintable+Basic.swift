@@ -15,7 +15,8 @@ public extension Constraintable {
                     relation: NSLayoutConstraint.Relation = .equal,
                     insetsFromSafeArea: Bool = false,
                     priority: UILayoutPriority = .required,
-                    active: Bool = true) -> Self {
+                    active: Bool = true,
+                    identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         set(attribute: .leading,
             relation: relation,
             toView: view ?? parent,
@@ -23,7 +24,8 @@ public extension Constraintable {
             constant: offset,
             insetsFromSafeArea: insetsFromSafeArea,
             priority: priority,
-            active: active)
+            active: active,
+            identifier: identifier)
     }
     
     @discardableResult
@@ -33,7 +35,8 @@ public extension Constraintable {
                      relation: NSLayoutConstraint.Relation = .equal,
                      insetsFromSafeArea: Bool = false,
                      priority: UILayoutPriority = .required,
-                     active: Bool = true) -> Self {
+                     active: Bool = true,
+                     identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         set(attribute: .trailing,
             relation: relation,
             toView: view ?? parent,
@@ -41,7 +44,8 @@ public extension Constraintable {
             constant: -offset,
             insetsFromSafeArea: insetsFromSafeArea,
             priority: priority,
-            active: active)
+            active: active,
+            identifier: identifier)
     }
     
     @discardableResult
@@ -51,7 +55,8 @@ public extension Constraintable {
                 relation: NSLayoutConstraint.Relation = .equal,
                 insetsFromSafeArea: Bool = false,
                 priority: UILayoutPriority = .required,
-                active: Bool = true) -> Self {
+                active: Bool = true,
+                identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         set(attribute: .top,
             relation: relation,
             toView: view ?? parent,
@@ -59,7 +64,8 @@ public extension Constraintable {
             constant: offset,
             insetsFromSafeArea: insetsFromSafeArea,
             priority: priority,
-            active: active)
+            active: active,
+            identifier: identifier)
     }
     
     @discardableResult
@@ -69,7 +75,8 @@ public extension Constraintable {
                    relation: NSLayoutConstraint.Relation = .equal,
                    insetsFromSafeArea:  Bool = false,
                    priority: UILayoutPriority = .required,
-                   active: Bool = true) -> Self {
+                   active: Bool = true,
+                   identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         set(attribute: .bottom,
             relation: relation,
             toView: view ?? parent,
@@ -77,6 +84,7 @@ public extension Constraintable {
             constant: -offset,
             insetsFromSafeArea: insetsFromSafeArea,
             priority: priority,
-            active: active)
+            active: active,
+            identifier: identifier)
     }
 }
