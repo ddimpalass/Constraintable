@@ -16,7 +16,7 @@ public extension Constraintable {
                     insetsFromSafeArea: Bool = false,
                     priority: UILayoutPriority = .required,
                     active: Bool = true,
-                    identifier: String = "Leading") -> Self {
+                    identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         set(attribute: .leading,
             relation: relation,
             toView: view ?? parent,
@@ -36,7 +36,7 @@ public extension Constraintable {
                      insetsFromSafeArea: Bool = false,
                      priority: UILayoutPriority = .required,
                      active: Bool = true,
-                     identifier: String = "Trailing") -> Self {
+                     identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         set(attribute: .trailing,
             relation: relation,
             toView: view ?? parent,
@@ -56,7 +56,7 @@ public extension Constraintable {
                 insetsFromSafeArea: Bool = false,
                 priority: UILayoutPriority = .required,
                 active: Bool = true,
-                identifier: String = "Top") -> Self {
+                identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         set(attribute: .top,
             relation: relation,
             toView: view ?? parent,
@@ -76,7 +76,7 @@ public extension Constraintable {
                    insetsFromSafeArea:  Bool = false,
                    priority: UILayoutPriority = .required,
                    active: Bool = true,
-                   identifier: String = "Bottom") -> Self {
+                   identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         set(attribute: .bottom,
             relation: relation,
             toView: view ?? parent,

@@ -13,7 +13,7 @@ public extension Constraintable {
               offset: UIEdgeInsets = .zero,
               insetsFromSafeArea: Bool = false,
               active: Bool = true,
-              identifier: String = "Fill") -> Self {
+              identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         fillWidth(toView: view,
                   leadingOffset: offset.left,
                   trailingOffset: offset.right,
@@ -34,7 +34,7 @@ public extension Constraintable {
                    trailingOffset: CGFloat = 0,
                    insetsFromSafeArea: Bool = false,
                    active: Bool = true,
-                   identifier: String = "Width") -> Self {
+                   identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         setLeading(toView: view,
                    offset: leadingOffset,
                    insetsFromSafeArea: insetsFromSafeArea,
@@ -52,7 +52,7 @@ public extension Constraintable {
                    offset: CGFloat = 0,
                    insetsFromSafeArea: Bool = false,
                    active: Bool = true,
-                   identifier: String = "Width") -> Self {
+                   identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         fillWidth(toView: view,
                   leadingOffset: offset,
                   trailingOffset: offset,
@@ -67,7 +67,7 @@ public extension Constraintable {
                     bottomOffset: CGFloat = 0,
                     insetsFromSafeArea: Bool = false,
                     active: Bool = true,
-                    identifier: String = "Height") -> Self {
+                    identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         setTop(toView: view,
                offset: topOffset,
                insetsFromSafeArea: insetsFromSafeArea,
@@ -85,7 +85,7 @@ public extension Constraintable {
                     offset: CGFloat = 0,
                     insetsFromSafeArea: Bool = false,
                     active: Bool = true,
-                    identifier: String = "Height") -> Self {
+                    identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         fillHeight(toView: view,
                    topOffset: offset,
                    bottomOffset: offset,

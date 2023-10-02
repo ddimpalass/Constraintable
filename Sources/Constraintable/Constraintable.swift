@@ -39,7 +39,7 @@ public extension Constraintable {
              insetsFromSafeArea: Bool,
              priority: UILayoutPriority,
              active isActive: Bool,
-             identifier: String = "") -> Self {
+             identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         let identifier = createConstraintIdentifier(identifier,
                                                     attribute: attribute,
                                                     relation: relation,

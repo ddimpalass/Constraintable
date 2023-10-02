@@ -13,7 +13,7 @@ public extension Constraintable {
                  height: CGFloat,
                  priority: UILayoutPriority = .required,
                  active: Bool = true,
-                 identifier: String = "Size") -> Self {
+                 identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         setWidth(constant: width,
                  priority: priority,
                  active: active,
@@ -30,7 +30,7 @@ public extension Constraintable {
                  multiplier: CGFloat = 1,
                  priority: UILayoutPriority = .required,
                  active: Bool = true,
-                 identifier: String = "Size") -> Self {
+                 identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         setWidth(equalTo: view,
                  relation: relation,
                  multiplier: multiplier,
@@ -45,7 +45,7 @@ public extension Constraintable {
     func setWidth(constant: CGFloat,
                   priority: UILayoutPriority = .required,
                   active: Bool = true,
-                  identifier: String = "Width") -> Self {
+                  identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         set(attribute: .width,
             relation: .equal,
             toView: nil,
@@ -64,7 +64,7 @@ public extension Constraintable {
                   multiplier: CGFloat = 1,
                   priority: UILayoutPriority = .required,
                   active: Bool = true,
-                  identifier: String = "Width") -> Self {
+                  identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         set(attribute: .width,
             relation: relation,
             toView: view,
@@ -81,7 +81,7 @@ public extension Constraintable {
     func setHeight(constant: CGFloat,
                    priority: UILayoutPriority = .required,
                    active: Bool = true,
-                   identifier: String = "Height") -> Self {
+                   identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         set(attribute: .height,
             relation: .equal,
             toView: nil,
@@ -100,7 +100,7 @@ public extension Constraintable {
                    multiplier: CGFloat = 1,
                    priority: UILayoutPriority = .required,
                    active: Bool = true,
-                   identifier: String = "Height") -> Self {
+                   identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         set(attribute: .height,
             relation: relation,
             toView: view,

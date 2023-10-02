@@ -15,7 +15,7 @@ public extension Constraintable {
                    insetsFromSafeArea: Bool = false,
                    priority: UILayoutPriority = .required,
                    active: Bool = true,
-                   identifier: String = "Center") -> Self {
+                   identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         setCenterX(toView: view,
                    offset: offsetX,
                    insetsFromSafeArea: insetsFromSafeArea,
@@ -36,7 +36,7 @@ public extension Constraintable {
                     insetsFromSafeArea: Bool = false,
                     priority: UILayoutPriority = .required,
                     active: Bool = true,
-                    identifier: String = "CenterX") -> Self {
+                    identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         set(attribute: .centerX,
             relation: .equal,
             toView: view ?? parent,
@@ -54,7 +54,7 @@ public extension Constraintable {
                     insetsFromSafeArea: Bool = false,
                     priority: UILayoutPriority = .required,
                     active: Bool = true,
-                    identifier: String = "CenterY") -> Self {
+                    identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
         set(attribute: .centerY,
             relation: .equal,
             toView: view ?? parent,
