@@ -12,13 +12,16 @@ public extension Constraintable {
     func setSize(width: CGFloat,
                  height: CGFloat,
                  priority: UILayoutPriority = .required,
-                 active: Bool = true) -> Self {
+                 active: Bool = true,
+                 identifier: String = "Size") -> Self {
         setWidth(constant: width,
                  priority: priority,
-                 active: active)
+                 active: active,
+                 identifier: identifier)
         .setHeight(constant: height,
                    priority: priority,
-                   active: active)
+                   active: active,
+                   identifier: identifier)
     }
     
     @discardableResult
@@ -26,19 +29,23 @@ public extension Constraintable {
                  relation: NSLayoutConstraint.Relation = .equal,
                  multiplier: CGFloat = 1,
                  priority: UILayoutPriority = .required,
-                 active: Bool = true) -> Self {
+                 active: Bool = true,
+                 identifier: String = "Size") -> Self {
         setWidth(equalTo: view,
                  relation: relation,
-                 multiplier: multiplier)
+                 multiplier: multiplier,
+                 identifier: identifier)
         .setHeight(equalTo: view,
                    relation: relation,
-                   multiplier: multiplier)
+                   multiplier: multiplier,
+                   identifier: identifier)
     }
-
+    
     @discardableResult
     func setWidth(constant: CGFloat,
                   priority: UILayoutPriority = .required,
-                  active: Bool = true) -> Self {
+                  active: Bool = true,
+                  identifier: String = "Width") -> Self {
         set(attribute: .width,
             relation: .equal,
             toView: nil,
@@ -46,7 +53,8 @@ public extension Constraintable {
             constant: constant,
             insetsFromSafeArea: false,
             priority: priority,
-            active: active)
+            active: active, 
+            identifier: identifier)
     }
     
     @discardableResult
@@ -55,7 +63,8 @@ public extension Constraintable {
                   relation: NSLayoutConstraint.Relation = .equal,
                   multiplier: CGFloat = 1,
                   priority: UILayoutPriority = .required,
-                  active: Bool = true) -> Self {
+                  active: Bool = true,
+                  identifier: String = "Width") -> Self {
         set(attribute: .width,
             relation: relation,
             toView: view,
@@ -64,13 +73,15 @@ public extension Constraintable {
             constant: 0,
             insetsFromSafeArea: false,
             priority: priority,
-            active: active)
+            active: active,
+            identifier: identifier)
     }
     
     @discardableResult
     func setHeight(constant: CGFloat,
                    priority: UILayoutPriority = .required,
-                   active: Bool = true) -> Self {
+                   active: Bool = true,
+                   identifier: String = "Height") -> Self {
         set(attribute: .height,
             relation: .equal,
             toView: nil,
@@ -78,7 +89,8 @@ public extension Constraintable {
             constant: constant,
             insetsFromSafeArea: false,
             priority: priority,
-            active: active)
+            active: active,
+            identifier: identifier)
     }
     
     @discardableResult
@@ -87,7 +99,8 @@ public extension Constraintable {
                    relation: NSLayoutConstraint.Relation = .equal,
                    multiplier: CGFloat = 1,
                    priority: UILayoutPriority = .required,
-                   active: Bool = true) -> Self {
+                   active: Bool = true,
+                   identifier: String = "Height") -> Self {
         set(attribute: .height,
             relation: relation,
             toView: view,
@@ -96,6 +109,7 @@ public extension Constraintable {
             constant: 0,
             insetsFromSafeArea: false,
             priority: priority,
-            active: active)
+            active: active,
+            identifier: identifier)
     }
 }
