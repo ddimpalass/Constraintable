@@ -13,7 +13,8 @@ public extension Constraintable {
                  height: CGFloat,
                  priority: UILayoutPriority = .required,
                  active: Bool = true,
-                 identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
+                 identifier: String = #fileID,
+                 line: Int = #line) -> Self {
         setWidth(constant: width,
                  priority: priority,
                  active: active,
@@ -30,7 +31,8 @@ public extension Constraintable {
                  multiplier: CGFloat = 1,
                  priority: UILayoutPriority = .required,
                  active: Bool = true,
-                 identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
+                 identifier: String = #fileID,
+                 line: Int = #line) -> Self {
         setWidth(equalTo: view,
                  relation: relation,
                  multiplier: multiplier,
@@ -45,7 +47,8 @@ public extension Constraintable {
     func setWidth(constant: CGFloat,
                   priority: UILayoutPriority = .required,
                   active: Bool = true,
-                  identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
+                  identifier: String = #fileID,
+                  line: Int = #line) -> Self {
         set(attribute: .width,
             relation: .equal,
             toView: nil,
@@ -64,7 +67,8 @@ public extension Constraintable {
                   multiplier: CGFloat = 1,
                   priority: UILayoutPriority = .required,
                   active: Bool = true,
-                  identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
+                  identifier: String = #fileID,
+                  line: Int = #line) -> Self {
         set(attribute: .width,
             relation: relation,
             toView: view,
@@ -81,7 +85,8 @@ public extension Constraintable {
     func setHeight(constant: CGFloat,
                    priority: UILayoutPriority = .required,
                    active: Bool = true,
-                   identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
+                   identifier: String = #fileID,
+                   line: Int = #line) -> Self {
         set(attribute: .height,
             relation: .equal,
             toView: nil,
@@ -100,7 +105,8 @@ public extension Constraintable {
                    multiplier: CGFloat = 1,
                    priority: UILayoutPriority = .required,
                    active: Bool = true,
-                   identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
+                   identifier: String = #fileID,
+                   line: Int = #line) -> Self {
         set(attribute: .height,
             relation: relation,
             toView: view,

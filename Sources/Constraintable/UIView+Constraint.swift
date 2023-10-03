@@ -7,6 +7,6 @@
 
 import UIKit
 
-extension UIView: Constraintable {
-    public var parent: Constraintable? { superview }
+public extension UIView {
+    var autoLayout: Constraintable { Constraintable(constraintableView: self) }
 }
