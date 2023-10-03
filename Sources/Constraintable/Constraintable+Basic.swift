@@ -18,15 +18,15 @@ public extension Constraintable {
                     active: Bool = true,
                     identifier: String = #fileID,
                     line: Int = #line) -> Self {
-        return set(attribute: .leading,
-                   relation: relation,
-                   toView: view ?? self.parent,
-                   toAttribute: attribute,
-                   constant: offset,
-                   insetsFromSafeArea: insetsFromSafeArea,
-                   priority: priority,
-                   active: active,
-                   identifier: identifier)
+        set(attribute: .leading,
+            relation: relation,
+            toView: view ?? self.parent,
+            toAttribute: attribute,
+            constant: offset,
+            insetsFromSafeArea: insetsFromSafeArea,
+            priority: priority,
+            active: active,
+            identifier: identifier)
     }
     
     @discardableResult
