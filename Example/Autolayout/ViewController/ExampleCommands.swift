@@ -6,10 +6,11 @@
 //
 
 import Constraintable
+import UIKit
 
 protocol ExampleCommands: CaseIterable {
     var description: String { get }
-    func action(view: Constraintable, isActive: Bool)
+    func action(view: UIView, isActive: Bool)
 }
 
 enum ConstraintableExampleType: String, CaseIterable {
@@ -45,16 +46,16 @@ enum BasicCommands: String, CaseIterable, ExampleCommands {
         rawValue
     }
     
-    func action(view: Constraintable, isActive: Bool) {
+    func action(view: UIView, isActive: Bool) {
         switch self {
         case .setLeading:
-            view.setLeading(active: isActive)
+            view.autoLayout.setLeading(active: isActive)
         case .setTrailing:
-            view.setTrailing(active: isActive)
+            view.autoLayout.setTrailing(active: isActive)
         case .setTop:
-            view.setTop(active: isActive)
+            view.autoLayout.setTop(active: isActive)
         case .setBottom:
-            view.setBottom(active: isActive)
+            view.autoLayout.setBottom(active: isActive)
         }
     }
 }
@@ -68,14 +69,14 @@ enum CenterCommands: String, CaseIterable, ExampleCommands {
         rawValue
     }
     
-    func action(view: Constraintable, isActive: Bool) {
+    func action(view: UIView, isActive: Bool) {
         switch self {
         case .setCenter:
-            view.setCenter(active: isActive)
+            view.autoLayout.setCenter(active: isActive)
         case .setCenterX:
-            view.setCenterX(active: isActive)
+            view.autoLayout.setCenterX(active: isActive)
         case .setCenterY:
-            view.setCenterY(active: isActive)
+            view.autoLayout.setCenterY(active: isActive)
         }
     }
 }
@@ -89,14 +90,14 @@ enum FillCommands: String, CaseIterable, ExampleCommands {
         rawValue
     }
     
-    func action(view: Constraintable, isActive: Bool) {
+    func action(view: UIView, isActive: Bool) {
         switch self {
         case .fill:
-            view.fill(active: isActive)
+            view.autoLayout.fill(active: isActive)
         case .fillWidth:
-            view.fillWidth(active: isActive)
+            view.autoLayout.fillWidth(active: isActive)
         case .fillHeight:
-            view.fillHeight(active: isActive)
+            view.autoLayout.fillHeight(active: isActive)
         }
     }
 }
@@ -110,14 +111,14 @@ enum SizeCommands: String, CaseIterable, ExampleCommands {
         rawValue
     }
     
-    func action(view: Constraintable, isActive: Bool) {
+    func action(view: UIView, isActive: Bool) {
         switch self {
         case .setSize:
-            view.setSize(width: 50, height: 50, active: isActive)
+            view.autoLayout.setSize(width: 50, height: 50, active: isActive)
         case .setWidth:
-            view.setWidth(constant: 150, active: isActive)
+            view.autoLayout.setWidth(constant: 150, active: isActive)
         case .setHeight:
-            view.setHeight(constant: 100, active: isActive)
+            view.autoLayout.setHeight(constant: 100, active: isActive)
         }
     }
 }
@@ -129,10 +130,10 @@ enum RemoveCommands: String, CaseIterable, ExampleCommands {
         rawValue
     }
     
-    func action(view: Constraintable, isActive: Bool) {
+    func action(view: UIView, isActive: Bool) {
         switch self {
         case .removeAllConstraints:
-            view.removeAllConstraints()
+            view.autoLayout.removeAllConstraints()
         }
     }
 }

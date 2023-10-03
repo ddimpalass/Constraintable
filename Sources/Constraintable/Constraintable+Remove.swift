@@ -11,11 +11,11 @@ public extension Constraintable {
     @discardableResult
     func removeAllConstraints() -> Self {
         parent?.constraints.forEach { constraint in
-            if constraint.firstItem as? Constraintable == self || constraint.secondItem as? Constraintable == self {
+            if constraint.firstItem as? UIView == constraintableView || constraint.secondItem as? UIView == constraintableView {
                 parent?.removeConstraint(constraint)
             }
         }
-        removeConstraints(constraints)
+        constraintableView.removeConstraints(constraintableView.constraints)
         return self
     }
 }

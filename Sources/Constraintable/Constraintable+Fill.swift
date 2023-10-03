@@ -9,11 +9,12 @@ import UIKit
 
 public extension Constraintable {
     @discardableResult
-    func fill(toView view: Constraintable? = nil,
+    func fill(toView view: UIView? = nil,
               offset: UIEdgeInsets = .zero,
               insetsFromSafeArea: Bool = false,
               active: Bool = true,
-              identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
+              identifier: String = #fileID,
+              line: Int = #line) -> Self {
         fillWidth(toView: view,
                   leadingOffset: offset.left,
                   trailingOffset: offset.right,
@@ -29,12 +30,13 @@ public extension Constraintable {
     }
     
     @discardableResult
-    func fillWidth(toView view: Constraintable? = nil,
+    func fillWidth(toView view: UIView? = nil,
                    leadingOffset: CGFloat = 0,
                    trailingOffset: CGFloat = 0,
                    insetsFromSafeArea: Bool = false,
                    active: Bool = true,
-                   identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
+                   identifier: String = #fileID,
+                   line: Int = #line) -> Self {
         setLeading(toView: view,
                    offset: leadingOffset,
                    insetsFromSafeArea: insetsFromSafeArea,
@@ -48,11 +50,12 @@ public extension Constraintable {
     }
     
     @discardableResult
-    func fillWidth(toView view: Constraintable? = nil,
+    func fillWidth(toView view: UIView? = nil,
                    offset: CGFloat = 0,
                    insetsFromSafeArea: Bool = false,
                    active: Bool = true,
-                   identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
+                   identifier: String = #fileID,
+                   line: Int = #line) -> Self {
         fillWidth(toView: view,
                   leadingOffset: offset,
                   trailingOffset: offset,
@@ -62,12 +65,13 @@ public extension Constraintable {
     }
     
     @discardableResult
-    func fillHeight(toView view: Constraintable? = nil,
+    func fillHeight(toView view: UIView? = nil,
                     topOffset: CGFloat = 0,
                     bottomOffset: CGFloat = 0,
                     insetsFromSafeArea: Bool = false,
                     active: Bool = true,
-                    identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
+                    identifier: String = #fileID,
+                    line: Int = #line) -> Self {
         setTop(toView: view,
                offset: topOffset,
                insetsFromSafeArea: insetsFromSafeArea,
@@ -81,11 +85,12 @@ public extension Constraintable {
     }
     
     @discardableResult
-    func fillHeight(toView view: Constraintable? = nil,
+    func fillHeight(toView view: UIView? = nil,
                     offset: CGFloat = 0,
                     insetsFromSafeArea: Bool = false,
                     active: Bool = true,
-                    identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
+                    identifier: String = #fileID,
+                    line: Int = #line) -> Self {
         fillHeight(toView: view,
                    topOffset: offset,
                    bottomOffset: offset,

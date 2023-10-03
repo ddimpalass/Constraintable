@@ -1,5 +1,5 @@
 //
-//  UIViewExtension.swift
+//  Constraintable.swift
 //  Autolayout
 //
 //  Created by Shchelochkov_D_S on 20.09.2023.
@@ -24,11 +24,12 @@ public enum ConstraintableAttribute: Int {
     case lastBaseline
 }
 
-public protocol Constraintable: UIView {
-    var parent: Constraintable? { get }
+public struct Constraintable {
+    unowned let constraintableView: UIView
+    weak var parent: UIView? { constraintableView.superview }
 }
 
-public extension Constraintable {
+extension Constraintable {
     @discardableResult
     func set(attribute: ConstraintableAttribute,
              relation: NSLayoutConstraint.Relation,
@@ -39,19 +40,21 @@ public extension Constraintable {
              insetsFromSafeArea: Bool,
              priority: UILayoutPriority,
              active isActive: Bool,
-             identifier: String = #function.description.components(separatedBy: "(").first ?? "") -> Self {
+             identifier: String = #fileID,
+             line: Int = #line) -> Self {
         let identifier = createConstraintIdentifier(identifier,
+                                                    line: line,
                                                     attribute: attribute,
                                                     relation: relation,
                                                     toView: view,
                                                     toAttribute: toAttribute,
                                                     multiplier: multiplier)
-        if let constraint = constraints.first(where: { $0.identifier == identifier }) {
+        if let constraint = constraintableView.constraints.first(where: { isEqual($0.identifier, identifier) }) {
             updateConstraint(constraint,
                              constant: constant,
                              priority: priority,
                              active: isActive)
-        } else if let constraint = view?.constraints.first(where: { $0.identifier == identifier }) {
+        } else if let constraint = view?.constraints.first(where: { isEqual($0.identifier, identifier) }) {
             updateConstraint(constraint,
                              constant: constant,
                              priority: priority,
@@ -84,8 +87,8 @@ private extension Constraintable {
                                priority: UILayoutPriority,
                                active isActive: Bool,
                                identifier: String) -> Self {
-        self.translatesAutoresizingMaskIntoConstraints = false
-        let constraint = NSLayoutConstraint(item: self,
+        constraintableView.translatesAutoresizingMaskIntoConstraints = false
+        let constraint = NSLayoutConstraint(item: constraintableView,
                                             attribute: NSLayoutConstraint.Attribute(rawValue: attribute.rawValue) ?? .notAnAttribute,
                                             relatedBy: relation,
                                             toItem: insetsFromSafeArea ? view?.safeAreaLayoutGuide : view,
@@ -110,16 +113,24 @@ private extension Constraintable {
     }
     
     private func createConstraintIdentifier(_ identifier: String,
+                                            line: Int,
                                             attribute: ConstraintableAttribute,
                                             relation: NSLayoutConstraint.Relation,
                                             toView view: UIView?,
                                             toAttribute: ConstraintableAttribute,
                                             multiplier: CGFloat) -> String {
-        var address = ""
+        var address = "\(Unmanaged.passUnretained(constraintableView).toOpaque())"
         if let view {
-            address = "\(Unmanaged.passUnretained(self).toOpaque())\(Unmanaged.passUnretained(view).toOpaque())"
+            address += ".\(Unmanaged.passUnretained(view).toOpaque())"
         }
-        let hashId = SHA256.hash(data: Data("\(attribute.rawValue).\(relation.rawValue).\(address).\(toAttribute.rawValue).\(multiplier)".utf8))
-        return "identifier: \(identifier), hashValue: \(hashId.hashValue)"
+        let hash = SHA256.hash(data: Data("\(attribute.rawValue).\(relation.rawValue).\(address).\(toAttribute.rawValue).\(multiplier)".utf8))
+        return "identifier: \(identifier), line: \(line), hashValue: \(hash.hashValue)"
+    }
+    
+    private func isEqual(_ lhs: String?, _ rhs: String?) -> Bool {
+        guard let lhs = lhs?.components(separatedBy: "hashValue:").last,
+              let rhs = rhs?.components(separatedBy: "hashValue:").last
+        else { return false }
+        return lhs == rhs
     }
 }

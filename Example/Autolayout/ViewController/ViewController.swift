@@ -46,10 +46,12 @@ final class ViewController: UIViewController {
         contentView.addSubview(exampleView)
         view.addSubview(tableView)
         contentView
+            .autoLayout
             .setTop()
             .fillWidth()
             .setHeight(equalTo: tableView)
         tableView
+            .autoLayout
             .setTop(toView: contentView, attribute: .bottom)
             .fillWidth()
             .setBottom()
