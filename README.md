@@ -151,7 +151,7 @@ https://github.com/ddimpalass/Constraintable/assets/73846203/05fc168a-d286-4391-
             .autoLayout
             .fill(insetsFromSafeArea: true)
   ```
-  - By default for debugging the constraints identifier consists of the file name and line number, if needed, you can change this in the parameters:
+- By default for debugging the constraints identifier consists of the file name and line number, if needed, you can change this in the parameters:
     
   ```swift
         exampleView
