@@ -142,7 +142,7 @@ final class ViewController: UIViewController {
         }
     }
     ```
-https://github.com/ddimpalass/Constraintable/assets/73846203/05fc168a-d286-4391-a8c1-2377dc71bd8c
+  <img src="https://github.com/ddimpalass/Constraintable/assets/73846203/8f2fcfe2-c4b7-408d-9bd6-6d65ed8a3e59" width="300">
   
 - If needed, you can use safe area layout guides:
   
